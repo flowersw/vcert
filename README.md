@@ -27,12 +27,12 @@ created for each trust anchor and is published to a URL.
 
 This software was designed to assist in testing for compliance with the Direct
 Project's Applicability Statement. Perhaps you are not working in Health IT at
-all and are just looking for a simple way to manage certificates.  You may be able
-to be able to use this for that purpose.
+all and are just looking for a simple way to manage certificates.  You may
+be able to use this for that purpose.
 
-CODE CONTRIBUTIONS & PULL REQUEST WELCOME! 
+CODE CONTRIBUTIONS & PULL REQUEST WELCOME!
 
-    
+
 Installation Part 1 - Download and Initial Setup
 ------------------------------------------------
 
@@ -54,18 +54,18 @@ Now install pip and make sure its up to date.
 
     sudo apt-get install python-pip
     sudo pip install --upgrade pip
-    
+
 
 Install git and then clone the master repository.
 
     sudo apt-get install git-core
     git clone https://github.com/videntity/vcert.git
 
-    
+
 Now change into the project's directory.
 
     cd vcert
-    
+
 Let's install the necessary python libraries including Django from the
 project's requirements file.
 
@@ -82,7 +82,7 @@ A directory for OpenSSL's CA must be created. We will do so by creating a
 symbolic link between `/opt/ca` and `vcert/apps/certificates/ca` directories.
 
    sudo ln -s vcert/apps/certificates/ca /opt/
-   
+
 Now copy settings_local_example.py to settings_example.py.
 
     cp settings_local_example.py settings_example.py
@@ -90,7 +90,7 @@ Now copy settings_local_example.py to settings_example.py.
 
 You can at this point try out the server at this point with
 `python manage.py runserver`, but your settings_local.py settings will need to
-be customized before everything will work as expected. 
+be customized before everything will work as expected.
 
 
 Installation Part 2 - Django Settings
@@ -101,7 +101,7 @@ The file `settings.py` contains default settings, where the file
 imports.
 
 
-One of the main changes is replacing `examaple.com` with your own domain. You'll
+One of the main changes is replacing `example.com` with your own domain. You'll
 also want to setup email settings for outgoing email notifications and setup web
 locations for publishing certificates and CRLs.
 
@@ -162,9 +162,9 @@ In order to make the CRL updates automatic, we will use cron to execute a script
 to perform the update. Edit your crontab like so.
 
     crontab -r
-    
+
 Now add the following line to your cron file.
-    
+
     0 */2 * * * /home/ubuntu/django-apps/vcert/scripts/buildcrl.sh >> /home/ubuntu/crl.log
 
 This assumes your `vcert` project is located at `/home/ubuntu/django-apps/vcert/`.
@@ -172,8 +172,8 @@ and the output of this operation is written to `/home/ubuntu/crl.log`. Adjust
 these paths to fit your local environment.  With this setting we are updating
 the CRLs every 30 minutes.  Note that each "Trust Anchor" has its own CRL.
 
-    
-    
+
+
 Run the Application
 -------------------
 
@@ -181,17 +181,17 @@ Now you can run the `vcert` in development mode:
 
     python manage.py runserver
 
-    
+
 
 Production Deployment
 ---------------------
 
-The convention is to deploy `vcert` on server named `caconsole` (e.g. `caconsole.example.com`). 
+The convention is to deploy `vcert` on server named `caconsole` (e.g. `caconsole.example.com`).
 Please refer to Django's documentation for more information on deploying Django
 https://docs.djangoproject.com/en/dev/howto/deployment/
-    
-    
-    
+
+
+
 Security
 --------
 
@@ -231,7 +231,7 @@ question within the Django admin, checks the "verify" box and then clicks save.
 published and an email notification is sent to the person requesting the
 certificate.  Then the user may create leaf nodes off of the Trust Archor from
 his or her account.  These, too, go through the same verification notification
-and verification process before they may be accessed by the requestor. 
+and verification process before they may be accessed by the requestor.
 
 
 As written, `vcert` requires an invitation code to create an account.  This is
@@ -245,6 +245,3 @@ not require the new user to use the email in the invitation to register.
 Happy CA-ing!
 
 @aviars
-
-
-    

@@ -52,7 +52,7 @@ Other Useful Commands
 ---------------------
 
 Fetch the serial number from a certificate
-    
+
     openssl x509 -in CERTIFICATE_FILE.pem -serial -noout
     openssl x509 -in CERTIFICATE_FILE.der -inform DER -serial -noout
 
@@ -94,7 +94,7 @@ Convert a PKCS#12 file (.pfx .p12) containing a private key and certificates to 
     openssl pkcs12 -in keyStore.pfx -out keyStore.pem -nodes
 
 You can add -nocerts to only output the private key or add -nokeys to only output the certificates.
-    
+
 
 Convert a PEM certificate file and a private key to PKCS#12 (.pfx .p12)
 
@@ -110,13 +110,13 @@ How do I extract information from a certificate?
     openssl x509 -text -in cert.pem
 
 Who issued the cert?
- 
+
    openssl x509 -noout -in cert.pem -subject
 
 To whom was it issued?
 
     openssl x509 -noout -in cert.pem -subject
-    
+
 for what dates is it valid?
 
     openssl x509 -noout -in cert.pem -dates
@@ -126,7 +126,6 @@ the above, all at once
     openssl x509 -noout -in cert.pem -issuer -subject -dates
 
 
-Read the infromation out of a CRL
+Read the information out of a CRL
 
     openssl crl -in direct-ca-crl.pem -noout -text
-

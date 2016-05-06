@@ -14,7 +14,7 @@ You can use this URL to kick things off.
 https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-640b070e
 
 
-A micro-instance is suitble for a low traffic installation.
+A micro-instance is suitable for a low traffic installation.
 
 Overview of Stack Components
 -----------------------------
@@ -49,20 +49,20 @@ Setup DNS
 
 Setup in your DNS server as follows two pointers back to your running instance..
 
-* Set Console app host name to `caconsle.*` or `console.*`.
+* Set Console app host name to `caconsole.*` or `console.*`.
 * Set the CA static resource hostname as `ca.*` or `sampleca.* *`.
 
 
 
 Navigate to http://caconsonle.example.com  http://caconsole.example.com  and http://ca.example.com replacing `example.com` with your actual domain.
 
-The core Apache2 configuration file exists her on the server: `/etc/apache2/sites-available/000-default.conf ` 
+The core Apache2 configuration file exists her on the server: `/etc/apache2/sites-available/000-default.conf `
 
 
 SSH Login
 ---------
 
-This is not absolutley necessary, but you will need this for most any configuration change, to enable SSL, and to setup outbound email.
+This is not absolutely necessary, but you will need this for most any configuration change, to enable SSL, and to setup outbound email.
 
 Login Example:
 
@@ -116,23 +116,23 @@ Change the Host away from Example.com to your own
 -------------------------------------------------
 
 
-there are two main taks.
+there are two main tasks.
 
 * Create your own root CA certificate pair.
-* Redefine some settings in your `settings_local.py` file. 
+* Redefine some settings in your `settings_local.py` file.
 
 To create your own root CA pair's do the following:
 
     cd /opt/ca
-    
+
     openssl genrsa -out private/ca.example.comKey.pem 2048
-    
+
     openssl req -sha256 -new -x509 -days 1826 -key private/ca.example.comKey.pem -out public/ca.example.com.pem
-    
+
     openssl rsa -des3 -in ./private/ca.example.comKey.pem -out ./private/ca.example.comKey.pem
 
 
-You'll need to redefine default settings by createing/ editing your settings_local.py file. See the file `/home/ubuntu/django-projects/vcert/vcert/settings_local_example.py` for details.  Be sure and restart Apache after making changes here with the following command.
+You'll need to redefine default settings by creating/ editing your settings_local.py file. See the file `/home/ubuntu/django-projects/vcert/vcert/settings_local_example.py` for details.  Be sure and restart Apache after making changes here with the following command.
 
 
     sudo apachectl restart
@@ -144,7 +144,7 @@ You'll need to redefine default settings by createing/ editing your settings_loc
 Enable HTTPS/SSL
 ----------------
 
-Only use the console application using HTTPS. Enabling SSL will require obtaining certificates install onto the Apache webserver. This is well documented elswhere online. Here are a couple hints to get you going in the right direction:
+Only use the console application using HTTPS. Enabling SSL will require obtaining certificates install onto the Apache webserver. This is well documented elsewhere online. Here are a couple hints to get you going in the right direction:
 
  * Keep in mind, these certificates are separate from certificates generated from this application.
  * Here is a reasonable tutorial: https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-12-04
